@@ -1,0 +1,14 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/galeria", "destination": "/galeria.html" },
+    { "source": "/parcerias", "destination": "/parcerias.html" },
+    { "source": "/eventos", "destination": "/eventos.html" },
+    { "source": "/criador", "destination": "/criador.html" },
+    { "source": "/membros", "destination": "/membros.html" },
+    { "source": "/regras", "destination": "/regras.html" },
+    { "source": "/game", "destination": "/game.html" },
+    { "source": "/jogo", "destination": "/jogo.html" },
+    { "source": "/configuracoes", "destination": "/configuracoes.html" }
+  ]
+}
