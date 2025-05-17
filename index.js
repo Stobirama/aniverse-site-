@@ -12,6 +12,7 @@ const paginas = [
   'galeria',
   'criador',
   'eventos',
+  'administradores',
   'membros',
   'game',
   'jogo',
