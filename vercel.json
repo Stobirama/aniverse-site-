@@ -9,6 +9,7 @@
     { "source": "/regras", "destination": "/regras.html" },
     { "source": "/game", "destination": "/game.html" },
     { "source": "/jogo", "destination": "/jogo.html" },
-    { "source": "/configuracoes", "destination": "/configuracoes.html" }
+    { "source": "/configuracoes", "destination": "/configuracoes.html" },
+    { "source": "/administradores", "destination": "/administradores.html" }
   ]
 }
