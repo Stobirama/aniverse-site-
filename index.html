@@ -232,15 +232,15 @@
       "qin shi huang","rin itoshi","ryomen sukuna","rimuru tempest","rukia","roronoa zoro","sae itoshi","simo hayha","suguru geto",
       "sakura","sung jinwoo","seishiro nagi","sawako kuronuma","soldier boy","sonic","serena","satoru gojo","sosuke aizen","sasuke",
       "scott pingrim","shinobo","seven","tengen uzui","tobirama","tanjiro","tsunade","the one above all","uzui","urabe","vermeil",
-      "varesa","vergil sparda","xeno","yumemizuki mizuki","yuuya tenjo","yashiro nene","yumeko jabami","yoichi isagi","yuri","yuta"
+      "varesa","vergil sparda","xeno","yumemizuki mizuki","yuuya tenjo","yashiro nene","yumeko jabami","yoichi isagi","yuri","yuta","madoka","toji"
     ];
 
     const encontrado = personagens.find(nome => nome.includes(query));
 
     if (encontrado) {
-      alert(`Personagem encontrado: ${encontrado}`);
+      alert(`Personagem encontrado em nosso server: ${encontrado}`);
     } else {
-      alert("Personagem não encontrado.");
+      alert("Personagem não encontrado. está livre!");
     }
   }
 </script>
@@ -257,6 +257,7 @@
   <button class="bubble-btn" onclick="location.href='/galeria'">Galeria</button>
   <a href="/regras" class="bubble-btn">Regras</a>
   <button class="bubble-btn" onclick="window.location.href='/eventos'">Eventos</button>
+  <a href="/administradores" class="bubble-btn">Administradores</a>
 </div>
 
 <div class="main">
