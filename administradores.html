@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Administradores | Aniverse</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html {
+      height: 100%;
+      font-family: 'Orbitron', sans-serif;
+      overflow-x: hidden;
+      color: white;
+      background: black;
+    }
+
+    video#bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .header {
+      text-align: center;
+      padding: 30px 10px;
+      font-size: 32px;
+      background: rgba(0, 0, 0, 0.6);
+      border-bottom: 2px solid #0ff;
+      text-shadow: 0 0 10px #0ff;
+    }
+
+    .admin-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      padding: 40px 20px;
+      z-index: 1;
+      position: relative;
+    }
+
+    .admin-card {
+      width: 150px;
+      text-align: center;
+    }
+
+    .admin-photo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #0ff;
+      box-shadow: 0 0 20px #0ff;
+      transition: transform 0.3s;
+    }
+
+    .admin-photo:hover {
+      transform: scale(1.05);
+    }
+
+    .admin-name {
+      margin-top: 10px;
+      font-size: 16px;
+      color: #0ff;
+      text-shadow: 0 0 5px #0ff;
+    }
+
+    .bubble-floating {
+      position: absolute;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #00f, #0ff, #0f0);
+      background-size: 200% 200%;
+      opacity: 0.2;
+      animation: float 8s ease-in-out infinite, colorshift 5s infinite;
+      z-index: 0;
+    }
+
+    .bubble1 { width: 100px; height: 100px; top: 10%; left: 5%; }
+    .bubble2 { width: 80px; height: 80px; top: 60%; left: 80%; }
+    .bubble3 { width: 60px; height: 60px; top: 30%; left: 40%; }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-60px); }
+      100% { transform: translateY(0); }
+    }
+
+    @keyframes colorshift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .back-btn {
+      display: block;
+      margin: 40px auto;
+      padding: 12px 25px;
+      font-size: 18px;
+      background: #0ff;
+      color: black;
+      border: none;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 0 15px #0ff;
+      transition: background 0.3s;
+    }
+
+    .back-btn:hover {
+      background: #0cc;
+    }
+  </style>
+</head>
+<body>
+
+<video autoplay muted loop id="bg">
+  <source src="https://files.catbox.moe/w9v6p2.mp4" type="video/mp4" />
+</video>
+
+<div class="bubble-floating bubble1"></div>
+<div class="bubble-floating bubble2"></div>
+<div class="bubble-floating bubble3"></div>
+
+<div class="header">ADMINS ANIVERSE</div>
+
+<div class="admin-container">
+  <div class="admin-card">
+    <img src="https://files.catbox.moe/n0f6b2.jpg" class="admin-photo" alt="ADM 1" />
+    <div class="admin-name">Dono Yōkai</div>
+  </div>
+  <div class="admin-card">
+    <img src="https://files.catbox.moe/7blm1p.jpg" class="admin-photo" alt="ADM 2" />
+    <div class="admin-name">Sub Kairos</div>
+  </div>
+  <div class="admin-card">
+    <img src="https://files.catbox.moe/xrlgx0.jpg" class="admin-photo" alt="ADM 3" />
+    <div class="admin-name">Sub Choko</div>
+  </div>
+  <div class="admin-card">
+    <img src="https://files.catbox.moe/q6buvu.jpg" class="admin-photo" alt="ADM 4" />
+    <div class="admin-name">Adm Noelle</div>
+  </div>
+  <div class="admin-card">
+    <img src="https://files.catbox.moe/vzj79j.jpg" class="admin-photo" alt="ADM 5" />
+    <div class="admin-name">Adm King</div>
+  </div>
+  <div class="admin-card">
+    <img src="https://files.catbox.moe/knfix5.jpg" class="admin-photo" alt="ADM 6" />
+    <div class="admin-name">Adm Nyzang</div>
+  </div>
+  <div class="admin-card">
+    <img src="https://files.catbox.moe/43byw6.jpg" class="admin-photo" alt="ADM 7" />
+    <div class="admin-name">Adm eri</div>
+  </div>
+</div>
+
+<a href="/index.html" class="back-btn">Voltar ao Início</a>
+
+</body>
+</html>
