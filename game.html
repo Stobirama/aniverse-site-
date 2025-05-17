@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Aniverse RPG - Criação de Personagem</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('https://files.catbox.moe/wisko9.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Arial', sans-serif;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: rgba(0, 0, 0, 0.75);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      background: #222;
+      color: white;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(45deg, purple, magenta);
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: linear-gradient(45deg, magenta, purple);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Crie seu Personagem</h2>
+  <form action="jogo.html" method="GET">
+    <label for="nome">Nome do Personagem:</label>
+    <input type="text" id="nome" name="nome" required>
+
+    <label for="classe">Classe:</label>
+    <select id="classe" name="classe" required>
+      <option value="guerreiro">Guerreiro</option>
+      <option value="mago">Mago</option>
+      <option value="arqueiro">Arqueiro</option>
+      <option value="ninja">Ninja</option>
+    </select>
+
+    <label for="avatar">Avatar:</label>
+    <select id="avatar" name="avatar" required>
+      <option value="1">Avatar 1</option>
+      <option value="2">Avatar 2</option>
+      <option value="3">Avatar 3</option>
+    </select>
+
+    <button type="submit">Confirmar e Entrar no Mundo</button>
+  </form>
+</div>
+
+</body>
+</html>

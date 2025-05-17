@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Aniverse RPG - Porta das Decisões</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #1e1e2f;
+    color: white;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+  }
+  .game-container {
+    background: #282940;
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 0 15px #6a00ff;
+    text-align: center;
+  }
+  h1 {
+    margin-bottom: 10px;
+    color: #bb86fc;
+  }
+  p {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  .doors {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+  button {
+    background: #6a00ff;
+    border: none;
+    color: white;
+    padding: 12px 18px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  button:hover {
+    background: #9500ff;
+  }
+  #message {
+    min-height: 60px;
+    margin-bottom: 15px;
+    font-weight: bold;
+  }
+  #trophy {
+    max-width: 200px;
+    margin-top: 20px;
+  }
+  /* Modal styles */
+  #rankModal {
+    display: none;
+    position: fixed;
+    top:0; left:0; right:0; bottom:0;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  #rankModal > div {
+    background: #282940;
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 320px;
+    width: 90%;
+    color: white;
+    text-align: center;
+  }
+  #rankList {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+    text-align: left;
+  }
+  #rankList li {
+    margin-bottom: 8px;
+  }
+  #rankList li span {
+    font-weight: bold;
+    color: #bb86fc;
+  }
+</style>
+</head>
+<body>
+
+<div class="game-container">
+  <h1>Aniverse RPG - Porta das Decisões</h1>
+  <p id="level-info">Nível: 1 / 10</p>
+  <p id="message">Escolha uma porta para avançar.</p>
+  <div class="doors">
+    <button id="door1" onclick="chooseDoor(1)">Porta 1</button>
+    <button id="door2" onclick="chooseDoor(2)">Porta 2</button>
+    <button id="door3" onclick="chooseDoor(3)">Porta 3</button>
+  </div>
+  <p id="hint"></p>
+  <img id="trophy" src="" alt="" style="display:none;" />
+  <button id="restartBtn" onclick="restartGame()" style="display:none; margin-top:10px;">Recomeçar</button>
+  <br />
+  <button onclick="openRank()" style="margin-top:15px; background:#bb86fc; color:#1e1e2f; font-weight:bold;">Ranking</button>
+</div>
+
+<!-- Modal Rank -->
+<div id="rankModal">
+  <div>
+    <h2>Ranking Top 3</h2>
+    <ul id="rankList"></ul>
+    <button onclick="closeRank()" style="background:#6a00ff; color:white; padding:10px 15px; border:none; border-radius:8px; cursor:pointer;">Fechar</button>
+  </div>
+</div>
+
+<script>
+  // Porta correta de cada nível (1,2 ou 3)
+  const correctDoors = [2, 1, 3, 3, 1, 2, 2, 3, 1, 2];
+
+  // Emboscadas para cada nível (mensagens)
+  const ambushes = [
+    "Uma armadilha de flechas surge!",
+    "Um grupo de goblins aparece!",
+    "Você cai em um fosso escondido!",
+    "Um mago lança um feitiço!",
+    "Uma emboscada de lobos!",
+    "Você é atacado por esqueletos!",
+    "Um gigante bloqueia sua passagem!",
+    "Veneno no chão!",
+    "Um dragão solta fogo!",
+    "Uma tempestade mágica te atinge!"
+  ];
+
+  let currentLevel = 0;
+  let startTime = null;
+  let ranking = [];
+
+  function startGame() {
+    currentLevel = 0;
+    startTime = new Date();
+    document.getElementById('message').textContent = "Escolha uma porta para avançar.";
+    document.getElementById('level-info').textContent = `Nível: ${currentLevel + 1} / 10`;
+    document.getElementById('hint').textContent = "";
+    document.getElementById('trophy').style.display = "none";
+    document.getElementById('restartBtn').style.display = "none";
+    enableDoors(true);
+  }
+
+  function enableDoors(enabled) {
+    for(let i=1; i<=3; i++) {
+      document.getElementById('door'+i).disabled = !enabled;
+    }
+  }
+
+  function chooseDoor(choice) {
+    if(choice === correctDoors[currentLevel]) {
+      currentLevel++;
+      if(currentLevel === correctDoors.length) {
+        endGame();
+      } else {
+        document.getElementById('message').textContent = "Você passou pela porta com sucesso!";
+        document.getElementById('level-info').textContent = `Nível: ${currentLevel + 1} / 10`;
+        document.getElementById('hint').textContent = "";
+      }
+    } else {
+      document.getElementById('message').textContent = "Errado! " + ambushes[currentLevel];
+      document.getElementById('hint').textContent = "Você deve recomeçar do início!";
+      enableDoors(false);
+      restartGameAfterDelay();
+    }
+  }
+
+  function restartGameAfterDelay() {
+    setTimeout(() => {
+      restartGame();
+    }, 3000);
+  }
+
+  function restartGame() {
+    currentLevel = 0;
+    startTime = new Date();
+    document.getElementById('message').textContent = "Jogo reiniciado. Escolha uma porta para começar.";
+    document.getElementById('level-info').textContent = `Nível: 1 / 10`;
+    document.getElementById('hint').textContent = "";
+    document.getElementById('trophy').style.display = "none";
+    document.getElementById('restartBtn').style.display = "none";
+    enableDoors(true);
+  }
+
+  function endGame() {
+    const endTime = new Date();
+    const totalSeconds = Math.floor((endTime - startTime) / 1000);
+    document.getElementById('message').textContent = `Parabéns! Você venceu o jogo em ${totalSeconds} segundos!`;
+    document.getElementById('hint').textContent = "";
+    document.getElementById('trophy').src = "https://cdn-icons-png.flaticon.com/512/2583/2583334.png";
+    document.getElementById('trophy').style.display = "block";
+    document.getElementById('restartBtn').style.display = "inline-block";
+    enableDoors(false);
+
+    // Adicionar ao ranking
+    addToRanking(totalSeconds);
+  }
+
+  function addToRanking(time) {
+    ranking.push(time);
+    ranking.sort((a,b) => a - b);
+    if (ranking.length > 3) ranking.pop(); // só mantém top 3
+  }
+
+  function openRank() {
+    const rankList = document.getElementById('rankList');
+    rankList.innerHTML = "";
+
+    if (ranking.length === 0) {
+      rankList.innerHTML = "<li>Nenhum jogador ainda.</li>";
+    } else {
+      for(let i = 0; i < ranking.length; i++) {
+        rankList.innerHTML += `<li><span>Top ${i+1}:</span> ${ranking[i]} segundos</li>`;
+      }
+    }
+
+    document.getElementById('rankModal').style.display = 'flex';
+  }
+
+  function closeRank() {
+    document.getElementById('rankModal').style.display = 'none';
+  }
+
+  window.onload = startGame;
+</script>
+
+</body>
+</html>

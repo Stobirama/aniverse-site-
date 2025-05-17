@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Regras | Aniverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Orbitron', sans-serif;
+      background: black;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    video#bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 80px auto;
+      padding: 30px;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 20px;
+      box-shadow: 0 0 25px violet;
+      backdrop-filter: blur(5px);
+      text-align: center;
+    }
+
+    .container h1 {
+      font-size: 36px;
+      margin-bottom: 25px;
+      text-shadow: 0 0 10px violet;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px violet; }
+      to { text-shadow: 0 0 25px rgb(255, 0, 255); }
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul li {
+      margin: 15px 0;
+      padding: 12px 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border-left: 4px solid violet;
+      border-radius: 10px;
+      transition: transform 0.3s, background 0.3s;
+      text-align: left;
+      font-size: 18px;
+    }
+
+    ul li:hover {
+      transform: translateX(5px);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 12px 28px;
+      background: linear-gradient(45deg, violet, magenta, cyan);
+      background-size: 200% 200%;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      text-decoration: none;
+      animation: move 5s ease infinite;
+      box-shadow: 0 0 10px magenta;
+    }
+
+    @keyframes move {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .back-btn:hover {
+      box-shadow: 0 0 15px white;
+    }
+  </style>
+</head>
+<body>
+
+<video autoplay muted loop id="bg">
+  <source src="https://files.catbox.moe/w9v6p2.mp4" type="video/mp4" />
+</video>
+
+<div class="container">
+  <h1>Regras da Comunidade Aniverse</h1>
+  <ul>
+    <li>Respeite todos os membros. Ofensas não serão toleradas.</li>
+    <li>Sem conteúdo +18, preconceituoso ou ilegal.</li>
+    <li>Evite spam e divulgações sem permissão da staff.</li>
+    <li>Participe dos eventos com educação e fair-play.</li>
+    <li>Admins têm a palavra final. Respeite as decisões.</li>
+    <li>Mantenha o clima da comunidade leve e divertido!</li>
+  </ul>
+  <a href="index.html" class="back-btn">Voltar ao Início</a>
+</div>
+
+</body>
+</html>

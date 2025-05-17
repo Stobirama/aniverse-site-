@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Aniverse | Galeria</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Orbitron', sans-serif;
+      color: white;
+      overflow-x: hidden;
+      background: black;
+    }
+
+    video#bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .header {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.6);
+      font-size: 28px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 15px;
+      padding: 30px;
+      z-index: 1;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+      transition: transform 0.2s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0.6;
+      animation: float 20s linear infinite;
+    }
+
+    .bubble img {
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+    }
+
+    @keyframes float {
+      from { transform: translateY(100vh); }
+      to { transform: translateY(-100vh); }
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80vh;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+    }
+  </style>
+</head>
+<body>
+
+<video autoplay muted loop id="bg">
+  <source src="https://files.catbox.moe/w9v6p2.mp4" type="video/mp4">
+</video>
+
+<audio autoplay loop>
+  <source src="https://files.catbox.moe/7mz6eq.mp3" type="audio/mp3">
+</audio>
+
+<div class="header">Galeria Aniverse</div>
+
+<div class="gallery">
+  <img src="https://files.catbox.moe/v8y84s.jpg" alt="img1">
+  <img src="https://files.catbox.moe/509zlk.jpg" alt="img2">
+  <img src="https://files.catbox.moe/ivc0ky.jpg" alt="img3">
+  <img src="https://files.catbox.moe/53f1gt.jpg" alt="img4">
+  <img src="https://files.catbox.moe/0fpaqp.jpg" alt="img5">
+  <img src="https://files.catbox.moe/syribr.jpg" alt="img6">
+</div>
+
+<div class="lightbox" id="lightbox">
+  <img src="" alt="preview" id="lightbox-img">
+</div>
+
+<script>
+  document.querySelectorAll('.gallery img').forEach(img => {
+    img.addEventListener('click', () => {
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox').style.display = 'flex';
+    });
+  });
+
+  document.getElementById('lightbox').addEventListener('click', () => {
+    document.getElementById('lightbox').style.display = 'none';
+  });
+
+  function createBubbles() {
+    for (let i = 0; i < 15; i++) {
+      const bubble = document.createElement('div');
+      bubble.className = 'bubble';
+      bubble.style.left = Math.random() * 100 + 'vw';
+      bubble.style.top = Math.random() * 100 + 'vh';
+      bubble.style.animationDuration = (10 + Math.random() * 20) + 's';
+      bubble.innerHTML = `<img src="https://files.catbox.moe/tlmwnv.jpg">`;
+      document.body.appendChild(bubble);
+    }
+  }
+
+  createBubbles();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Aniverse | Eventos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: black;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    video#bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .header {
+      padding: 20px;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.6);
+      font-size: 24px;
+    }
+
+    .events-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 40px;
+      z-index: 1;
+      position: relative;
+    }
+
+    .event-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 0 15px rgba(255,255,255,0.1);
+      transition: transform 0.3s;
+    }
+
+    .event-card:hover {
+      transform: scale(1.05);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .event-title {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #f0f0f0;
+    }
+
+    .event-description {
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    .bubble {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background: radial-gradient(circle, #ff00ff, transparent);
+      border-radius: 50%;
+      animation: float 8s infinite ease-in-out;
+      opacity: 0.4;
+    }
+
+    .bubble:nth-child(1) { top: 80%; left: 10%; animation-delay: 0s; }
+    .bubble:nth-child(2) { top: 90%; left: 50%; animation-delay: 2s; }
+    .bubble:nth-child(3) { top: 85%; left: 80%; animation-delay: 4s; }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-80px); }
+      100% { transform: translateY(0); }
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<video autoplay muted loop id="bg">
+  <source src="https://files.catbox.moe/w9v6p2.mp4" type="video/mp4">
+</video>
+
+<div class="header">
+  Eventos Aniverse
+</div>
+
+<div class="events-container">
+  <div class="event-card">
+    <div class="event-title">Evento RPG - Festas organizadas</div>
+    <div class="event-description">geralmente quando acontecem festas mega festas é avisado a todos membros sobre! so chegar com seu personagem!.</div>
+  </div>
+  <div class="event-card">
+    <div class="event-title">Torneios de desenhos</div>
+    <div class="event-description">mostre suas habilidades desenhando a todos da house! não seja timido (a) todos estao pra aprender!!</div>
+  </div>
+  <div class="event-card">
+    <div class="event-title">brincadeiras gerais!</div>
+    <div class="event-description">ppt, verdade ou desafio e muito mais! adivinhe o personagem, um dos melhores!.</div>
+  </div>
+</div>
+
+<div class="bubble"></div>
+<div class="bubble"></div>
+<div class="bubble"></div>
+
+<audio autoplay loop>
+  <source src="https://files.catbox.moe/87h21k.mp3" type="audio/mp3">
+</audio>
+
+</body>
+</html>

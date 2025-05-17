@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Configurações</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
+      min-height: 100vh;
+      color: white;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.3);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .config-item {
+      margin-bottom: 25px;
+    }
+
+    .config-item label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 25px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0;
+      right: 0; bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 25px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 19px;
+      width: 19px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #00b894;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(24px);
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      background: #f0f0f0;
+      color: #333;
+      font-weight: bold;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background-color: #3a86ff;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #265df2;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Configurações da Conta</h2>
+
+    <div class="config-item">
+      <label for="darkMode">Modo Escuro</label>
+      <label class="switch">
+        <input type="checkbox" id="darkMode">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="config-item">
+      <label for="notificacoes">Notificações</label>
+      <label class="switch">
+        <input type="checkbox" id="notificacoes" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="config-item">
+      <label for="idioma">Idioma</label>
+      <select id="idioma">
+        <option value="pt">Português</option>
+        <option value="en">Inglês</option>
+        <option value="es">Espanhol</option>
+      </select>
+    </div>
+
+    <button onclick="salvarConfiguracoes()">Salvar Configurações</button>
+  </div>
+
+  <script>
+    function salvarConfiguracoes() {
+      const modoEscuro = document.getElementById('darkMode').checked;
+      const notificacoes = document.getElementById('notificacoes').checked;
+      const idioma = document.getElementById('idioma').value;
+
+      alert("Configurações salvas:\nModo escuro: " + (modoEscuro ? "Ativado" : "Desativado") +
+            "\nNotificações: " + (notificacoes ? "Ativadas" : "Desativadas") +
+            "\nIdioma: " + idioma);
+    }
+  </script>
+</body>
+</html>

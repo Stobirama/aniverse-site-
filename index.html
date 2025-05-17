@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Aniverse | Comunidade</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Orbitron', sans-serif;
+      color: white;
+      overflow-x: hidden;
+      background: url('https://files.catbox.moe/wisko9.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: white;
+      font-family: 'Orbitron', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .scroll-menu {
+      display: flex;
+      overflow-x: auto;
+      padding: 15px;
+      gap: 15px;
+      background: rgba(0, 0, 0, 0.6);
+      scrollbar-width: none;
+    }
+
+    .scroll-menu::-webkit-scrollbar {
+      display: none;
+    }
+
+    .bubble-btn {
+      flex: 0 0 auto;
+      padding: 10px 18px;
+      border-radius: 50px;
+      border: none;
+      color: white;
+      font-size: 14px;
+      background: linear-gradient(45deg, red, orange, yellow, green, blue, purple);
+      background-size: 600% 600%;
+      animation: rainbow 6s ease infinite;
+      cursor: pointer;
+      box-shadow: 0 0 8px rgba(0,0,0,0.4);
+      white-space: nowrap;
+    }
+
+    @keyframes rainbow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .main {
+      text-align: center;
+      padding: 60px 20px 30px;
+    }
+
+    .main h1 {
+      font-size: 26px;
+      margin-bottom: 15px;
+    }
+
+    .search-bar {
+      margin: 0 auto 30px;
+      max-width: 500px;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 30px;
+      border: none;
+      outline: none;
+      box-shadow: 0 0 8px rgba(255,255,255,0.3);
+    }
+
+    .bubbles-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 0 20px 40px;
+    }
+
+    .bubble {
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 20px;
+      overflow: hidden;
+      width: 140px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.2);
+      text-align: center;
+    }
+
+    .bubble img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+    }
+
+    .bubble p {
+      font-size: 14px;
+      padding: 8px;
+    }
+
+    .about {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 30px 20px;
+      background: rgba(0,0,0,0.6);
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+
+    .about h2 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .about p {
+      font-size: 16px;
+      color: #ccc;
+      line-height: 1.6;
+    }
+
+    .video-section {
+      margin: 40px auto;
+      max-width: 90%;
+      text-align: center;
+    }
+
+    .video-section iframe {
+      width: 100%;
+      max-width: 600px;
+      height: 315px;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    }
+
+    .more-menu {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+    }
+
+    .more-button {
+      background: rgba(255,255,255,0.9);
+      color: black;
+      border-radius: 50%;
+      padding: 12px 16px;
+      font-size: 20px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    .popup {
+      display: none;
+      position: absolute;
+      bottom: 60px;
+      right: 0;
+      background: rgba(0,0,0,0.85);
+      border-radius: 10px;
+      padding: 10px;
+      min-width: 140px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    }
+
+    .popup a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 8px;
+      border-bottom: 1px solid #444;
+    }
+
+    .popup a:last-child {
+      border-bottom: none;
+    }
+
+    .popup a:hover {
+      background: #333;
+    }
+  </style>
+</head>
+<script>
+  function togglePopup() {
+    const menu = document.getElementById("popupMenu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  }
+
+  function search() {
+    const query = document.getElementById("searchBox").value.trim().toLowerCase();
+    if (query === "") {
+      alert("Digite algo para pesquisar.");
+      return;
+    }
+
+    const personagens = [
+      "akuto sai","angel dust","artoria pendragon","anya forger","ayane","ainz ooal gown","android 21","agome","alucard","asta",
+      "beat","beak cirrus","bell cranel","baji","choso","cha hae in","chuuya nakahara","denji","dan heng","dante","daki","dolia","deam",
+      "emy","eri","enma aí","frieren","furina","elizabeth","gust","gyaru","guts","goku black","goku","geto","hancock","henry",
+      "homem aranha","hanako","hinata","husk","inuyasha","ippo","itoshi","ichigo","izumi miyamura","itachi uchiha","ivan","john doe",
+      "a jennifer","juvia lockser","jinshi","juuzou","jack","jane doe","katara","kiouko hori","krul tepes","kaiser","kaguya","kirito",
+      "kang jinhyuk","kairos nexus","kirari momobami","kratos","kakashi","konan","kirie goshima","l","luffy","levi arckemam","makima",
+      "mitsuri kanroji","mitsuba","megumi","madara","michael kaiser","mordred pendragon","maomao","marcarita","meliodas","momoi",
+      "modeus","7 de março","mayuri","mark grayson","nagatoro san","nezuko","naruto","noelle","oliver aiku","pikachu","perona",
+      "qin shi huang","rin itoshi","ryomen sukuna","rimuru tempest","rukia","roronoa zoro","sae itoshi","simo hayha","suguru geto",
+      "sakura","sung jinwoo","seishiro nagi","sawako kuronuma","soldier boy","sonic","serena","satoru gojo","sosuke aizen","sasuke",
+      "scott pingrim","shinobo","seven","tengen uzui","tobirama","tanjiro","tsunade","the one above all","uzui","urabe","vermeil",
+      "varesa","vergil sparda","xeno","yumemizuki mizuki","yuuya tenjo","yashiro nene","yumeko jabami","yoichi isagi","yuri","yuta"
+    ];
+
+    const encontrado = personagens.find(nome => nome.includes(query));
+
+    if (encontrado) {
+      alert(`Personagem encontrado: ${encontrado}`);
+    } else {
+      alert("Personagem não encontrado.");
+    }
+  }
+</script>
+
+<body>
+
+<div class="header">
+  <div class="logo">Aniverse Community ✨</div>
+</div>
+
+<div class="scroll-menu">
+  <a href="/criador" class="bubble-btn">Criador</a>
+  <a href="/parcerias" class="bubble-btn">Parcerias</a>
+  <button class="bubble-btn" onclick="location.href='/galeria'">Galeria</button>
+  <a href="/regras" class="bubble-btn">Regras</a>
+  <button class="bubble-btn" onclick="window.location.href='/eventos'">Eventos</button>
+</div>
+
+<div class="main">
+  <h1>Seja bem-vindo ao blog Aniverse</h1>
+  <div class="search-bar">
+  <input type="text" placeholder="veja se ja tem esse personagem na aniverse.." id="searchBox">
+  <button onclick="search()">Pesquisar</button>
+</div>
+</div>
+
+<div class="bubbles-container">
+  <div class="bubble">
+    <a href="https://wa.me/556992265645?text=Olá,%20eu%20me%20interessei%20pelo%20Frieren%20Bot%20v4" target="_blank" style="text-decoration: none; color: inherit;">
+      <img src="https://files.catbox.moe/h5x5f7.jpg" alt="Imagem 1">
+      <p>Frieren Bot v4</p>
+    </a>
+  </div>
+  <div class="bubble">
+    <a href="https://wa.me/5511943818381?text=Olá,%20eu%20me%20interessei%20pelo%20Dante%20Bot%20v4" target="_blank" style="text-decoration: none; color: inherit;">
+      <img src="https://files.catbox.moe/2sfz9u.jpg" alt="Imagem 2">
+      <p>Dante Bot v4</p>
+    </a>
+  </div>
+  <div class="bubble">
+    <a href="https://wa.me/559881240688?text=Olá,%20eu%20me%20interessei%20pelo%20Shinobu%20Bot%20v4" target="_blank" style="text-decoration: none; color: inherit;">
+      <img src="https://files.catbox.moe/00yq6v.jpg" alt="Imagem 3">
+      <p>Shinobu Bot v4</p>
+    </a>
+  </div>
+  <div class="bubble">
+    <a href="https://wa.me/557399759953?text=Olá,%20eu%20me%20interessei%20pelo%20Kyoury%20Bot%20v1" target="_blank" style="text-decoration: none; color: inherit;">
+      <img src="https://files.catbox.moe/dl65gi.jpg" alt="Imagem 4">
+      <p>Kyoury Bot v1</p>
+    </a>
+  </div>
+</div>
+
+<!-- Botão Game Aniverse -->
+<a href="game" class="bubble-btn">Game Aniverse</a>
+
+<div class="about">
+  <h2>Sobre a Aniverse</h2>
+  <p>A Aniverse é uma comunidade de anime e RPG no WhatsApp que já foi uma das maiores houses do Brasil. Com o tempo, enfrentamos muitos desafios e até fomos derrubados, mas agora voltamos com tudo! Estamos reconstruindo nossa casa com mais força, amizade e eventos incríveis para todos os fãs de anime!</p>
+</div>
+
+<div class="video-section">
+  <h2>Conheça a Aniverse em vídeo</h2>
+  <iframe src="https://files.catbox.moe/d2jxyc.mp4" allowfullscreen></iframe>
+</div>
+
+<div class="more-menu">
+  <button class="more-button" onclick="togglePopup()">⋮</button>
+  <div class="popup" id="popupMenu">
+    <a href="https://chat.whatsapp.com/E2Ei4DTQAVTAaEx9BE05fG" class="bubble-btn" target="_blank">Chat</a>
+    <a href="/membros" class="bubble-btn" target="_blank">Membros</a>
+</div>
+
+<script>
+  function togglePopup() {
+    const menu = document.getElementById("popupMenu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  }
+</script>
+
+</body>
+</html>

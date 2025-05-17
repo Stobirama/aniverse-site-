@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Vídeos & Fotos - Aniverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #121212;
+      color: #eee;
+    }
+    body, html {
+      min-height: 100vh;
+    }
+    header {
+      position: fixed;
+      width: 100%;
+      background: #00ff9955;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 15px #00ff99aa;
+    }
+    .logo {
+      color: #00ff99;
+      font-weight: 700;
+      font-size: 1.7rem;
+      letter-spacing: 1.5px;
+      cursor: default;
+      text-shadow: 0 0 10px #00ff99;
+    }
+    nav {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    nav a {
+      color: #00ff99;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 5px #00ff99aa;
+    }
+    nav a:hover {
+      background-color: #00ff9955;
+      box-shadow: 0 0 15px #00ff99;
+      color: #fff;
+    }
+    main {
+      max-width: 1000px;
+      margin: 100px auto 40px auto;
+      padding: 0 20px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 3rem;
+      color: #00ff99;
+      text-shadow: 0 0 15px #00ff99;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
+      gap: 25px;
+    }
+    .gallery-item {
+      background: #222;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #00ff9966;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+      transition: transform 0.3s ease;
+    }
+    .gallery-item:hover
