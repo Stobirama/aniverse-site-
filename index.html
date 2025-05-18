@@ -249,6 +249,11 @@
 
 <div class="header">
   <div class="logo">Aniverse Community ✨</div>
+
+  <!-- Botão hamburger -->
+  <button id="menu-btn" aria-label="Abrir menu" style="background:none; border:none; cursor:pointer; color:white; font-size:28px; padding:0; margin-left:auto;">
+    &#9776;
+  </button>
 </div>
 
 <div class="scroll-menu">
@@ -259,6 +264,64 @@
   <button class="bubble-btn" onclick="window.location.href='/eventos'">Eventos</button>
   <a href="/administradores" class="bubble-btn">Administradores</a>
 </div>
+
+<!-- Painel lateral -->
+<div id="side-panel">
+  <button id="close-panel" aria-label="Fechar menu">&times;</button>
+  <button class="bubble-btn" onclick="location.href='/play-aniverse'">loja de apps</button>
+</div>
+
+<style>
+  /* Painel lateral escondido */
+  #side-panel {
+    position: fixed;
+    top: 0;
+    right: -280px;
+    width: 280px;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    box-shadow: -3px 0 10px rgba(0,0,0,0.7);
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: right 0.3s ease;
+    z-index: 1000;
+  }
+
+  /* Mostrar painel */
+  #side-panel.open {
+    right: 0;
+  }
+
+  #close-panel {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 32px;
+    align-self: flex-end;
+    cursor: pointer;
+  }
+
+  /* Ajuste do botão hamburger dentro da header */
+  #menu-btn {
+    /* já tem inline styles para posicionar e estilizar */
+  }
+</style>
+
+<script>
+  const menuBtn = document.getElementById('menu-btn');
+  const sidePanel = document.getElementById('side-panel');
+  const closePanel = document.getElementById('close-panel');
+
+  menuBtn.addEventListener('click', () => {
+    sidePanel.classList.add('open');
+  });
+
+  closePanel.addEventListener('click', () => {
+    sidePanel.classList.remove('open');
+  });
+</script>
 
 <div class="main">
   <h1>Seja bem-vindo ao blog Aniverse</h1>

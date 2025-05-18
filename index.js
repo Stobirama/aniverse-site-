@@ -14,6 +14,7 @@ const paginas = [
   'eventos',
   'administradores',
   'membros',
+  'play-aniverse',
   'game',
   'jogo',
   'configuracoes',
