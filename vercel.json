@@ -10,6 +10,7 @@
     { "source": "/game", "destination": "/game.html" },
     { "source": "/jogo", "destination": "/jogo.html" },
     { "source": "/configuracoes", "destination": "/configuracoes.html" },
-    { "source": "/administradores", "destination": "/administradores.html" }
+    { "source": "/administradores", "destination": "/administradores.html" },
+    { "source": "/play-aniverse", "destination": "/play-aniverse.html" }
   ]
 }
