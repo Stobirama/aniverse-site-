@@ -53,25 +53,22 @@
     }
 
     .bubble-btn {
-      flex: 0 0 auto;
-      padding: 10px 18px;
-      border-radius: 50px;
-      border: none;
-      color: white;
-      font-size: 14px;
-      background: linear-gradient(45deg, red, orange, yellow, green, blue, purple);
-      background-size: 600% 600%;
-      animation: rainbow 6s ease infinite;
-      cursor: pointer;
-      box-shadow: 0 0 8px rgba(0,0,0,0.4);
-      white-space: nowrap;
-    }
+  flex: 0 0 auto;
+  padding: 10px 18px;
+  border-radius: 50px;
+  border: none;
+  color: white;
+  font-size: 14px;
+  background-color: #8000ff; /* roxo fixo */
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  white-space: nowrap;
+  transition: background 0.3s ease;
+}
 
-    @keyframes rainbow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+.bubble-btn:hover {
+  background-color: #a64dff; /* roxo mais claro no hover */
+}
 
     .main {
       text-align: center;
@@ -248,7 +245,7 @@
 <body>
 
 <div class="header">
-  <div class="logo">Aniverse Community ✨</div>
+  <div class="logo">Yōkay Api's✨</div>
 
   <!-- Botão hamburger -->
   <button id="menu-btn" aria-label="Abrir menu" style="background:none; border:none; cursor:pointer; color:white; font-size:28px; padding:0; margin-left:auto;">
@@ -265,11 +262,143 @@
   <a href="/administradores" class="bubble-btn">Administradores</a>
 </div>
 
-<!-- Painel lateral -->
-<div id="side-panel">
-  <button id="close-panel" aria-label="Fechar menu">&times;</button>
-  <button class="bubble-btn" onclick="location.href='/play-aniverse'">loja de apps</button>
+<!-- Botão redondo com 3 traços (_) empilhados no canto inferior esquerdo -->
+<button id="three-dots-btn" 
+  style="
+    position: fixed; 
+    bottom: 20px; 
+    left: 20px; 
+    width: 50px; 
+    height: 50px; 
+    background: rgba(255,255,255,0.1); 
+    border-radius: 50%; 
+    border: none; 
+    cursor: pointer; 
+    padding: 8px 0; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-around; 
+    align-items: center; 
+    z-index: 1100;
+  ">
+  <span style="display:block; width: 20px; height: 3px; background: white; border-radius: 2px;"></span>
+  <span style="display:block; width: 20px; height: 3px; background: white; border-radius: 2px;"></span>
+  <span style="display:block; width: 20px; height: 3px; background: white; border-radius: 2px;"></span>
+</button>
+
+<!-- Menu lateral esquerdo cobrindo 50% da tela -->
+<div id="api-side-menu" 
+  style="
+    position: fixed;
+    top: 0;
+    left: -50%;
+    width: 50%;
+    height: 100%;
+    background: rgba(0,0,0,0.95);
+    color: white;
+    box-shadow: 4px 0 15px rgba(0,0,0,0.7);
+    padding: 20px 30px;
+    overflow-y: auto;
+    transition: left 0.3s ease;
+    z-index: 1050;
+    font-family: 'Orbitron', sans-serif;
+  ">
+  <button id="close-api-menu" 
+    style="background:none; border:none; color:white; font-size:28px; cursor:pointer; position:absolute; top:15px; right:15px;">&times;</button>
+
+  <!-- Menus expansíveis -->
+  <div>
+    <div class="api-menu-title" style="cursor:pointer; font-weight:bold; font-size:18px; margin-top:20px; display:flex; justify-content:space-between; align-items:center;">
+      <span>Menu Download</span>
+      <span class="arrow" style="transition: transform 0.3s ease;">&#9654;</span>
+    </div>
+    <div class="api-submenu" style="display:none; padding-left:15px; margin-top:10px; font-size:16px;">
+      <p><a href="#" style="color:white; text-decoration:none;">Baixar Vídeos</a></p>
+      <p><a href="#" style="color:white; text-decoration:none;">Baixar Imagens</a></p>
+      <p><a href="#" style="color:white; text-decoration:none;">Baixar Áudios</a></p>
+      <p><a href="#" style="color:white; text-decoration:none;">Baixar GIFs</a></p>
+    </div>
+
+    <div class="api-menu-title" style="cursor:pointer; font-weight:bold; font-size:18px; margin-top:20px; display:flex; justify-content:space-between; align-items:center;">
+      <span>Menu NSFW +18</span>
+      <span class="arrow" style="transition: transform 0.3s ease;">&#9654;</span>
+    </div>
+    <div class="api-submenu" style="display:none; padding-left:15px; margin-top:10px; font-size:16px;">
+      <p><a href="#" style="color:white; text-decoration:none;">Hentai</a></p>
+      <p><a href="#" style="color:white; text-decoration:none;">Ecchi</a></p>
+      <p><a href="#" style="color:white; text-decoration:none;">Adulto</a></p>
+      <p><a href="#" style="color:white; text-decoration:none;">BL (Boys Love)</a></p>
+      <p><a href="#" style="color:white; text-decoration:none;">GL (Girls Love)</a></p>
+      <p><a href="#" style="color:white; text-decoration:none;">Fetiches</a></p>
+      <p><a href="#" style="color:white; text-decoration:none;">Manga NSFW</a></p>
+      <p><a href="#" style="color:white; text-decoration:none;">Vídeos NSFW</a></p>
+    </div>
+
+    <div class="api-menu-title" style="cursor:pointer; font-weight:bold; font-size:18px; margin-top:20px; display:flex; justify-content:space-between; align-items:center;">
+      <span>Menu I.A.</span>
+      <span class="arrow" style="transition: transform 0.3s ease;">&#9654;</span>
+    </div>
+    <div class="api-submenu" style="display:none; padding-left:15px; margin-top:10px; font-size:16px;">
+      <p><a href="#" style="color:white; text-decoration:none;">Gerar Imagens</a></p>
+      <p><a href="#" style="color:white; text-decoration:none;">Gerar Vídeos</a></p>
+      <p><a href="#" style="color:white; text-decoration:none;">Chatbot</a></p>
+      <p><a href="#" style="color:white; text-decoration:none;">Reconhecimento de Voz</a></p>
+      <p><a href="#" style="color:white; text-decoration:none;">Análise de Texto</a></p>
+    </div>
+
+    <div class="api-menu-title" style="cursor:pointer; font-weight:bold; font-size:18px; margin-top:20px; display:flex; justify-content:space-between; align-items:center;">
+      <span>Upload</span>
+      <span class="arrow" style="transition: transform 0.3s ease;">&#9654;</span>
+    </div>
+    <div class="api-submenu" style="display:none; padding-left:15px; margin-top:10px; font-size:16px;">
+      <p><a href="#" style="color:white; text-decoration:none;">Enviar Imagens</a></p>
+      <p><a href="#" style="color:white; text-decoration:none;">Enviar Vídeos</a></p>
+      <p><a href="#" style="color:white; text-decoration:none;">Enviar Áudios</a></p>
+      <p><a href="#" style="color:white; text-decoration:none;">Enviar Documentos</a></p>
+    </div>
+
+    <div class="api-menu-title" style="cursor:pointer; font-weight:bold; font-size:18px; margin-top:20px; display:flex; justify-content:space-between; align-items:center;">
+      <span>Outros Recursos</span>
+      <span class="arrow" style="transition: transform 0.3s ease;">&#9654;</span>
+    </div>
+    <div class="api-submenu" style="display:none; padding-left:15px; margin-top:10px; font-size:16px;">
+      <p><a href="#" style="color:white; text-decoration:none;">Notificações</a></p>
+      <p><a href="#" style="color:white; text-decoration:none;">Configurações</a></p>
+      <p><a href="#" style="color:white; text-decoration:none;">API Status</a></p>
+      <p><a href="#" style="color:white; text-decoration:none;">Logs de Uso</a></p>
+      <p><a href="#" style="color:white; text-decoration:none;">Documentação</a></p>
+    </div>
+  </div>
 </div>
+
+<script>
+  const threeDotsBtn = document.getElementById('three-dots-btn');
+  const apiSideMenu = document.getElementById('api-side-menu');
+  const closeApiMenuBtn = document.getElementById('close-api-menu');
+
+  threeDotsBtn.addEventListener('click', () => {
+    apiSideMenu.style.left = '0';
+  });
+
+  closeApiMenuBtn.addEventListener('click', () => {
+    apiSideMenu.style.left = '-50%';
+  });
+
+  // Menus expansíveis
+  document.querySelectorAll('.api-menu-title').forEach(title => {
+    title.addEventListener('click', () => {
+      const submenu = title.nextElementSibling;
+      const arrow = title.querySelector('.arrow');
+      if (submenu.style.display === 'block') {
+        submenu.style.display = 'none';
+        arrow.style.transform = 'rotate(0deg)';
+      } else {
+        submenu.style.display = 'block';
+        arrow.style.transform = 'rotate(90deg)';
+      }
+    });
+  });
+</script>
 
 <style>
   /* Painel lateral escondido */
@@ -359,8 +488,7 @@
 </div>
 
 <!-- Botão Game Aniverse -->
-<a href="game" class="bubble-btn">Game Aniverse</a>
-
+<a href="game" class="bubble-btn">GAME ANIVERSE</a>
 <div class="about">
   <h2>Sobre a Aniverse</h2>
   <p>A Aniverse é uma comunidade de anime e RPG no WhatsApp que já foi uma das maiores houses do Brasil. Com o tempo, enfrentamos muitos desafios e até fomos derrubados, mas agora voltamos com tudo! Estamos reconstruindo nossa casa com mais força, amizade e eventos incríveis para todos os fãs de anime!</p>
